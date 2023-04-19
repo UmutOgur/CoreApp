@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CoreApp.Models.Request>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Home/Shared/_Layout.cshtml";
+}
+
+<div class="bg-success text-white m-5 p-4">
+    Request List
+</div>
+<div class="table-responsive"></div>
+<div class="m-5">
+    <table class="table table-bordered table-striped m-5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>PHONE</th>
+                <th>MESSAGE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.name</td>
+                    <td>@item.email</td>
+                    <td>@item.phone</td>
+                    <td>@item.messages</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

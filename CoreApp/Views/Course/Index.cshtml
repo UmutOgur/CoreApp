@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CoreApp.Models.Course>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Home/Shared/_Layout.cshtml";
+}
+
+<div class="m-4">
+    <div class="bg-success text-white p-4">
+        Course List
+    </div>
+    <br />
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Active</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>@item.IsActive</td>
+                    <form asp-action="Delete" method="post">
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                        
+                    </td>
+                    <td>
+                        
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                    </form>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,19 @@
+﻿@model CoreApp.Models.Request
+@{
+    ViewData["Title"] = "Thanks";
+
+    Layout = "~/Views/Home/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="text-center">
+    <h1>Thanks @Model.name</h1>
+    <h4>Our course is going to well</h4>
+
+    <a asp-action="List" class="btn btn-primary">
+        Check who are coming soon..
+    </a>
+</div>
+
+
