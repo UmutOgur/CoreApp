@@ -3,28 +3,33 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Home/Shared/_Layout.cshtml";
 }
-
+<div class="m-4">
+    <div class="bg-success text-white p-4">
+        Course Edit
+    </div>
 <form asp-action="Edit" method="post">
 
     <div class="form-group">
         <label asp-for="Name"></label>
-        <İnput asp-for="Name" class="form-control">
+       <input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>
-        <İnput asp-for="Description" class="form-control">
+        <input asp-for="Description" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Price"></label>
-        <İnput asp-for="Price" class="form-control">
+        <input asp-for="Price" class="form-control" />
     </div>
-
-    <div class="form-group">
-        <label asp-for="IsActive"></label>
-        <İnput asp-for="IsActive" class="form-control">
-    </div>
-   
+       
+   <br />
+        <div class="form-check mb-2" >
+            <input asp-for="IsActive" class="form-check-input" type="checkbox" value="">
+            <label class="form-check-label" asp-for="IsActive">
+               
+            </label>
+        </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
-
+</div>
