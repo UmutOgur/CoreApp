@@ -18,7 +18,7 @@ namespace CoreApp.Controllers
         }
         public IActionResult Index()
         {
-            //Sadece aktif olan kursları al
+            
 
             var Courses = repository.GetCousesByActive(true);
             ViewBag.CourseCount = Courses.Count();// toplamını al
@@ -31,7 +31,9 @@ namespace CoreApp.Controllers
         [HttpPost]
         public IActionResult Edit(Course entity)
         {
-            return View();
+            //Güncelle
+            repository.UpdateCourse(entity);
+            return RedirectToAction(nameof(Index));
         }
         [HttpPost]
         public IActionResult Delete(int id)

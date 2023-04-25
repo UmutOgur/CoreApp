@@ -11,7 +11,7 @@ namespace CoreApp.Models
         {
             context = _context;
         }
-              
+
         public IEnumerable<Course> Courses => context.Courses;
 
         IQueryable<Course> ICourseRepository.Courses => throw new NotImplementedException();
@@ -38,12 +38,26 @@ namespace CoreApp.Models
 
         public IEnumerable<Course> GetCousesByActive(bool isActive)
         {
-            return context.Courses.Where(y=>y.IsActive== isActive).ToList();
+            //Sadece aktif olan kursları al
+            // return context.Courses.Where(y=>y.IsActive == isActive).ToList();
+            // tüm kursları listele
+            return context.Courses.ToList();
         }
 
         public void UpdateCourse(Course UpdatedCourse)
         {
-            throw new NotImplementedException();
+            var updatedcourseInfo = context.Courses.Find(UpdatedCourse.Id);
+            //güncelle repository
+            if (updatedcourseInfo != null)
+            {
+                updatedcourseInfo.Name = UpdatedCourse.Name;
+                updatedcourseInfo.Description = UpdatedCourse.Description;
+                updatedcourseInfo.Price = UpdatedCourse.Price;
+                updatedcourseInfo.IsActive = UpdatedCourse.IsActive;
+
+                context.SaveChanges();
+            }
+
         }
     }
 }
