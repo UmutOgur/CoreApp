@@ -66,7 +66,7 @@ namespace CoreApp.Models
 
             EntityEntry entry = context.Entry(originalCourse);
 
-            //modified,Unchanged,Added,Deleted,Detached
+            //modified,Unchanged,Added,Deleted,Detached ile çalışıyor
             Console.WriteLine($"Entity State : {entry.State}");
             foreach (var property in new string[] { "Name", "Description", "Price", "IsActive" })
             {
