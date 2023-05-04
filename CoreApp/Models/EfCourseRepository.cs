@@ -2,6 +2,8 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
 namespace CoreApp.Models
 {
     public class EfCourseRepository : ICourseRepository
@@ -44,20 +46,35 @@ namespace CoreApp.Models
             return context.Courses.ToList();
         }
 
-        public void UpdateCourse(Course UpdatedCourse)
+        public void UpdateCourse(Course UpdatedCourse, Course originalCourse = null)
         {
-            var updatedcourseInfo = context.Courses.Find(UpdatedCourse.Id);
-            //güncelle repository
-            if (updatedcourseInfo != null)
+            if (originalCourse == null)
             {
-                updatedcourseInfo.Name = UpdatedCourse.Name;
-                updatedcourseInfo.Description = UpdatedCourse.Description;
-                updatedcourseInfo.Price = UpdatedCourse.Price;
-                updatedcourseInfo.IsActive = UpdatedCourse.IsActive;
+                originalCourse = context.Courses.Find(UpdatedCourse.Id);
 
-                context.SaveChanges();
             }
+            else
+            {
+                context.Courses.Attach(originalCourse);
+            }
+            //güncelle repository
+
+            originalCourse.Name = UpdatedCourse.Name;
+            originalCourse.Description = UpdatedCourse.Description;
+            originalCourse.Price = UpdatedCourse.Price;
+            originalCourse.IsActive = UpdatedCourse.IsActive;
+
+            EntityEntry entry = context.Entry(originalCourse);
+
+            //modified,Unchanged,Added,Deleted,Detached
+            Console.WriteLine($"Entity State : {entry.State}");
+            foreach (var property in new string[] { "Name", "Description", "Price", "IsActive" })
+            {
+                Console.WriteLine($"{property} - old : {entry.OriginalValues[property]} new {entry.CurrentValues[property]}");
+            }
+            context.SaveChanges();
 
         }
     }
 }
+

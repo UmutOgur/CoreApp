@@ -29,7 +29,7 @@ namespace CoreApp.Controllers
             return View(repository.GetById(id));
         }
         [HttpPost]
-        public IActionResult Edit(Course entity)
+        public IActionResult Edit(Course entity, Course original)
         {
             //Güncelle
             repository.UpdateCourse(entity);
