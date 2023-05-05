@@ -10,7 +10,7 @@ namespace CoreApp.Models
         Course GetById(int id);
         IEnumerable<Course> GetCourses();
         IEnumerable<Course> GetCousesByActive(bool isActive);
-        void CreateCourse(Course newCourse);
+        int CreateCourse(Course newCourse);
         void UpdateCourse(Course UpdatedCourse, Course originalCourse = null);
         void DeleteCourse(int courseid);
         

@@ -50,7 +50,8 @@ namespace CoreApp.Controllers
         [HttpPost]
         public IActionResult Create(Course newCourse)
         {
-            repository.CreateCourse(newCourse);
+           int id= repository.CreateCourse(newCourse);
+            Console.WriteLine("Id :{0}",id);
             return RedirectToAction(nameof(Index));
         }
     }

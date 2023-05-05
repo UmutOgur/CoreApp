@@ -18,10 +18,11 @@ namespace CoreApp.Models
 
         IQueryable<Course> ICourseRepository.Courses => throw new NotImplementedException();
 
-        public void CreateCourse(Course newCourse)
+        public int CreateCourse(Course newCourse)
         {
             context.Courses.Add(newCourse);
             context.SaveChanges();
+            return newCourse.Id;
         }
 
         public void DeleteCourse(int courseid)
