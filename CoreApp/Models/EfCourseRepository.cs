@@ -20,7 +20,8 @@ namespace CoreApp.Models
 
         public void CreateCourse(Course newCourse)
         {
-            throw new NotImplementedException();
+            context.Courses.Add(newCourse);
+            context.SaveChanges();
         }
 
         public void DeleteCourse(int courseid)

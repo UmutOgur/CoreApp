@@ -1,13 +1,13 @@
 ﻿@model CoreApp.Models.Course
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = ViewBag.ActionMode;
     Layout = "~/Views/Home/Shared/_Layout.cshtml";
 }
 <div class="m-4">
     <div class="bg-success text-white p-4">
-        Course Edit
+        Course Edit and Add Course
     </div>
-    <form asp-action="Edit" method="post">
+    <form asp-action="@(ViewBag.ActionMode)" method="post">
 
         <input type="hidden" name="original.Id" value="@Model.Id" />
         <input type="hidden" name="original.Name" value="@Model.Name" />

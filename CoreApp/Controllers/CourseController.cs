@@ -26,6 +26,7 @@ namespace CoreApp.Controllers
         }
         public IActionResult Edit(int id)
         {
+            ViewBag.ActionMode = "Edit";
             return View(repository.GetById(id));
         }
         [HttpPost]
@@ -39,6 +40,18 @@ namespace CoreApp.Controllers
         public IActionResult Delete(int id)
         {
             return View();
+        }
+        
+        public  IActionResult Create()
+        {
+            ViewBag.ActionMode = "Create";
+            return View("Edit", new Course());
+        }
+        [HttpPost]
+        public IActionResult Create(Course newCourse)
+        {
+            repository.CreateCourse(newCourse);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
