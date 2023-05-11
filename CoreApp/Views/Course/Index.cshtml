@@ -16,8 +16,8 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Active</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Action</th>
+              
             </tr>
         </thead>
         <tbody>
@@ -29,15 +29,15 @@
                     <td>@item.Description</td>
                     <td>@item.Price</td>
                     <td>@item.IsActive</td>
-                    <form asp-action="Delete" method="post">
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                        <form asp-action="Delete" method="post">
 
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                            <input  type="hidden" name="id" value="@item.Id">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+
+                        </form>
                     </td>
-                    <td>
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                    </form>
                 </tr>
             }
         </tbody>

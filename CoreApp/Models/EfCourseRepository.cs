@@ -27,7 +27,9 @@ namespace CoreApp.Models
 
         public void DeleteCourse(int courseid)
         {
-            throw new NotImplementedException();
+            
+            context.Courses.Remove(new Course() { Id=courseid});
+            context.SaveChanges();
         }
 
         public Course GetById(int courseid)

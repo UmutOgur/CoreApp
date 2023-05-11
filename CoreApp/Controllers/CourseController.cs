@@ -39,7 +39,8 @@ namespace CoreApp.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            return View();
+            repository.DeleteCourse(id);
+            return RedirectToAction("Index");
         }
         
         public  IActionResult Create()
