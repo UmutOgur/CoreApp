@@ -15,5 +15,18 @@
 </head>
 <body>
     @RenderBody()
+    <script src="https://code.jquery.com/jguery-3.3.3.1.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $("#filter").submit(function () {
+                $(this).find(":input").filter(function () { return !this.value; }).attr("disabled" , "disabled");
+                return true;
+            });
+
+            $("form").find(":input").prop("disabled",false);
+        });
+
+    </script>
 </body>
 </html>

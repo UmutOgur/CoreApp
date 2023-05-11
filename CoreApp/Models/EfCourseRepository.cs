@@ -42,6 +42,24 @@ namespace CoreApp.Models
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Course> GetCoursesByFilter(string Name = null, decimal? Price = null, string IsActive = null)
+        {
+            IQueryable<Course> query = context.Courses;
+            if (Name != null)
+            {
+                query = query.Where(u => u.Name.ToLower().Contains(Name.ToLower()));
+            }
+            if (Price != null)
+            {
+                query = query.Where(u => u.Price >= Price);
+            }
+            if (IsActive=="on")
+            {
+                query = query.Where(u => u.IsActive == true);
+            }
+            return query.ToList();
+        }
+
         public IEnumerable<Course> GetCousesByActive(bool isActive)
         {
             //Sadece aktif olan kursları al

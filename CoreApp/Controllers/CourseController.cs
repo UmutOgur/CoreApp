@@ -16,12 +16,14 @@ namespace CoreApp.Controllers
             repository = _repository;
             
         }
-        public IActionResult Index()
+        public IActionResult Index(string Name = null, decimal? Price = null, string IsActive = null)
         {
-            
-
-            var Courses = repository.GetCousesByActive(true);
-            ViewBag.CourseCount = Courses.Count();// toplamını al
+            //Filtreleme alını için
+            Console.Clear();
+            var Courses = repository.GetCoursesByFilter(Name,Price,IsActive);
+            ViewBag.Name= Name;// toplamını al
+            ViewBag.Price= Price;// toplamını al
+            ViewBag.IsActive = IsActive=="on"? true : false;// toplamını al
             return View(Courses); 
         }
         public IActionResult Edit(int id)
