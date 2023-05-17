@@ -6,9 +6,7 @@ using System.Runtime.CompilerServices;
 namespace CoreApp.Controllers
 {
     public class CourseController : Controller
-    {
-        
-               
+    {                   
 
         private ICourseRepository repository;
         public CourseController(ICourseRepository _repository) 
@@ -21,9 +19,9 @@ namespace CoreApp.Controllers
             //Filtreleme alını için
             Console.Clear();
             var Courses = repository.GetCoursesByFilter(Name,Price,IsActive);
-            ViewBag.Name= Name;// toplamını al
-            ViewBag.Price= Price;// toplamını al
-            ViewBag.IsActive = IsActive=="on"? true : false;// toplamını al
+            ViewBag.Name= Name;
+            ViewBag.Price= Price;
+            ViewBag.IsActive = IsActive=="on"? true : false;
             return View(Courses); 
         }
         public IActionResult Edit(int id)

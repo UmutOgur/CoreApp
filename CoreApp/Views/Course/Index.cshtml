@@ -9,7 +9,6 @@
         Course List
     </div>
     <br />
-
     <div class="card my-2">
         <div class="card-body">
             <form method="get" id="filter">
@@ -38,14 +37,12 @@
                 <th>Price</th>
                 <th>Active</th>
                 <th>Action</th>
-
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-
                     <td>@item.Name</td>
                     <td>@item.Description</td>
                     <td>@item.Price</td>
