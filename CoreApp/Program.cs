@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,13 +18,27 @@ builder.Services.AddDbContext<DataContext>
 builder.Services.AddTransient<ICourseRepository, EfCourseRepository>();
 var app = builder.Build();
 
+#pragma warning disable CS8321 // Local function is declared but never used
+static void Configure(DataContext dataContext)
+{
+    SeedDatabase.seed(dataContext);
+}
+#pragma warning restore CS8321 // Local function is declared but never used
+
+
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
+    
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    
+
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
