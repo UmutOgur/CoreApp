@@ -15,7 +15,13 @@ builder.Services.AddDbContext<DataContext>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DeafultConnection")));
 
+builder.Services.AddDbContext<UserContext>
+    (options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("UserConnection")));
+
 builder.Services.AddTransient<ICourseRepository, EfCourseRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 var app = builder.Build();
 
 #pragma warning disable CS8321 // Local function is declared but never used
@@ -24,9 +30,6 @@ static void Configure(DataContext dataContext)
     SeedDatabase.seed(dataContext);
 }
 #pragma warning restore CS8321 // Local function is declared but never used
-
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
