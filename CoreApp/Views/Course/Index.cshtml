@@ -36,7 +36,10 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Active</th>
+                <th>Instructor</th>
                 <th>Action</th>
+
+
             </tr>
         </thead>
         <tbody>
@@ -47,6 +50,7 @@
                     <td>@item.Description</td>
                     <td>@item.Price</td>
                     <td>@item.IsActive</td>
+                    <td>@item.Instructor?.Name</td>
                     <td>
                         <form asp-action="Delete" method="post">
 

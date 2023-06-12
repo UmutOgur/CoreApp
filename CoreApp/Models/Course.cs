@@ -9,6 +9,6 @@
         public bool IsActive { get; set; }
 
         //navigation property
-        public Instructor? Instructor { get; set; } = null;
+        public virtual Instructor? Instructor { get; set; } = null;
     }
 }

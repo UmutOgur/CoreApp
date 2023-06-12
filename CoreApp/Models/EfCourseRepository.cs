@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreApp.Models
 {
@@ -34,7 +35,7 @@ namespace CoreApp.Models
 
         public Course GetById(int courseid)
         {
-            return context.Courses.Find(courseid);
+            return context.Courses.Include(x =>x.Instructor).FirstOrDefault(i =>i.Id==courseid);
         }
 
         public IEnumerable<Course> GetCourses()
@@ -57,7 +58,7 @@ namespace CoreApp.Models
             {
                 query = query.Where(u => u.IsActive == true);
             }
-            return query.ToList();
+            return query.Include(i =>i.Instructor).ToList();
         }
 
         public IEnumerable<Course> GetCousesByActive(bool isActive)
